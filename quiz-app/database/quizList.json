@@ -1,0 +1,134 @@
+{
+    "Trending quiz": [
+        {
+            "id": "trending_01",
+            "name": "Are you true Ronaldo fan?",
+            "image": "https://dk7h1f5gq849l.cloudfront.net/quiz_images/174591026137c84768-4935-411f-9f89-bf0d22eb6494.png",
+            "noOfQuestions": 10,
+            "totalPlays": 5
+        },
+        {
+            "id": "trending_02",
+            "name": "Is your brain ready for this IQ test?",
+            "image": "https://dk7h1f5gq849l.cloudfront.net/quiz_images/17458368404084de1a-9f65-4567-ad50-802bfa715b8a.png",
+            "noOfQuestions": 10,
+            "totalPlays": 6
+        },
+        {
+            "id": "trending_03",
+            "name": "How fast can you guess the picture?",
+            "image": "https://dk7h1f5gq849l.cloudfront.net/quiz_images/1745665707f79b1677-bc49-429e-bdeb-62f3f380257f.png",
+            "noOfQuestions": 10,
+            "totalPlays": 3
+        },
+        {
+            "id": "trending_04",
+            "name": "World currencies quiz",
+            "image": "https://dk7h1f5gq849l.cloudfront.net/quiz_images/174547829807ae62f2-93b5-409b-ae21-52ed296ba2af.png",
+            "noOfQuestions": 10,
+            "totalPlays": 5
+        },
+        {
+            "id": "trending_05",
+            "name": "Quiz: Human or AI?",
+            "image": "https://dk7h1f5gq849l.cloudfront.net/quiz_images/1744875669ed50a774-0dbc-4278-b4a2-ba8f8e04346e.jpg",
+            "noOfQuestions": 10,
+            "totalPlays": 8
+        },
+        {
+            "id": "trending_06",
+            "name": "Can you guess the mobile game?",
+            "image": "https://dk7h1f5gq849l.cloudfront.net/quiz_images/17453212782421659a-86c3-4ffe-beed-1f577d2184ff.webp",
+            "noOfQuestions": 10,
+            "totalPlays": 6
+        }
+    ],
+    "Music": [
+        {
+            "id": "Music_01",
+            "name": "The Weeknd Quiz",
+            "image": "https://dk7h1f5gq849l.cloudfront.net/quiz_images/1744367243d798a65b-2ee8-44e1-941e-790853ded0ef.jpg",
+            "noOfQuestions": 10,
+            "totalPlays": 2
+        },
+        {
+            "id": "Music_02",
+            "name": "Massive Music Quiz",
+            "image": "https://dk7h1f5gq849l.cloudfront.net/quiz_images/1743587990213346a7-6440-4688-a889-88e1a0a5e57f.jpg",
+            "noOfQuestions": 10,
+            "totalPlays": 6
+        },
+        {
+            "id": "Music_03",
+            "name": "Twice Quiz",
+            "image": "https://dk7h1f5gq849l.cloudfront.net/quiz_images/174278806927feabc5-cf02-45a6-abd7-96e6c70af166.png",
+            "noOfQuestions": 10,
+            "totalPlays": 3
+        },
+        {
+            "id": "Music_04",
+            "name": "The Beatles Quiz",
+            "image": "https://dk7h1f5gq849l.cloudfront.net/quiz_images/1742190301f9b8cf6c-d804-4197-8c95-c54b278ddb73.jpg",
+            "noOfQuestions": 10,
+            "totalPlays": 5
+        },
+        {
+            "id": "Music_05",
+            "name": "1980's Music Quiz",
+            "image": "https://dk7h1f5gq849l.cloudfront.net/quiz_images/17418475189ff394a1-3a93-4b90-b704-267b2f8b75dc.jpg",
+            "noOfQuestions": 10,
+            "totalPlays": 8
+        },
+        {
+            "id": "Music_06",
+            "name": "Alexa Music Quiz",
+            "image": "https://dk7h1f5gq849l.cloudfront.net/quiz_images/1743590638855676bd-ddc3-4e26-81f5-5ba8a919ebb2.jpg",
+            "noOfQuestions": 10,
+            "totalPlays": 6
+        }
+    ],
+    "Science": [
+        {
+            "id": "Science_01",
+            "name": "Test your science knowledge!",
+            "image": "https://dk7h1f5gq849l.cloudfront.net/quiz_images/17413426853e91a32b-e48b-4dc2-9f7d-62dc323f4399.png",
+            "noOfQuestions": 10,
+            "totalPlays": 2
+        },
+        {
+            "id": "Science_02",
+            "name": "Dinosaur Trivia",
+            "image": "https://dk7h1f5gq849l.cloudfront.net/quiz_images/174107498749a5e0c0-70ab-4c63-8548-99eb5124f942.png",
+            "noOfQuestions": 10,
+            "totalPlays": 6
+        },
+        {
+            "id": "Science_03",
+            "name": "Twice Quiz",
+            "image": "https://dk7h1f5gq849l.cloudfront.net/quiz_images/174278806927feabc5-cf02-45a6-abd7-96e6c70af166.png",
+            "noOfQuestions": 10,
+            "totalPlays": 3
+        },
+        {
+            "id": "Science_04",
+            "name": "The Beatles Quiz",
+            "image": "https://dk7h1f5gq849l.cloudfront.net/quiz_images/1742190301f9b8cf6c-d804-4197-8c95-c54b278ddb73.jpg",
+            "noOfQuestions": 10,
+            "totalPlays": 5
+        },
+        {
+            "id": "Science_05",
+            "name": "1980's Music Quiz",
+            "image": "https://dk7h1f5gq849l.cloudfront.net/quiz_images/17418475189ff394a1-3a93-4b90-b704-267b2f8b75dc.jpg",
+            "noOfQuestions": 10,
+            "totalPlays": 8
+        },
+        {
+            "id": "Science_06",
+            "name": "Alexa Music Quiz",
+            "image": "https://dk7h1f5gq849l.cloudfront.net/quiz_images/1743590638855676bd-ddc3-4e26-81f5-5ba8a919ebb2.jpg",
+            "noOfQuestions": 10,
+            "totalPlays": 6
+        }
+    ]
+}
