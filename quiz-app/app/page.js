@@ -9,7 +9,7 @@ export default async function Home() {
   return (
     <>
       <Header />
-      <main className="bg-gradient-to-b from-[#FAFAFA] to-[#FFFFFF] text-[#212121]">
+      <main className="bg-[#1A1A1A] text-[#E0E0E0]">
         <Homepage_First_Section />
         <div className='p-6'>
           <QuizListHomePage data={data} />
