@@ -44,7 +44,7 @@ export default function Page() {
       if (currentQuestionIndex < questions.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
       } else {
-        onResult();
+        // onResult();
       }
     }
 
