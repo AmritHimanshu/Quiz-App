@@ -26,7 +26,11 @@ function Page() {
     const answer = [...userAnswers];
     answer[currentQuestionIndex] = option;
     setUserAnswers(answer);
-  }
+  };
+
+  const onNextQuestion = () => {
+
+  };
 
   return (
     <div className='p-3 space-y-10'>
@@ -48,10 +52,10 @@ function Page() {
               <div key={option.id} className='bg-white text-black p-2 rounded-md space-x-2 cursor-pointer hover:bg-gray-400 duration-300' onClick={() => handleOptionSelect(option.option)}><span className='py-1 px-2 rounded-full bg-[#1A1A1A] text-white text-xs'>{idx + 1}</span><span>{option.option}</span></div>
             ))}
           </div>
-          <div className='mb-5'>
+          <div className='mb-5 w-full'>
             {userAnswers[currentQuestionIndex] && (
               <div className='w-full'>
-                <button className='p-2 bg-[#39FF14] text-black font-bold w-full rounded-full cursor-pointer animate-pulse hover:animate-none hover:drop-shadow-[0_0_15px_rgba(0,255,255,0.3)] duration-300'>Next Question</button>
+                <button className='p-2 bg-[#39FF14] text-black font-bold w-full rounded-full cursor-pointer animate-pulse hover:animate-none hover:drop-shadow-[0_0_15px_rgba(0,255,255,0.3)] duration-300' onClick={onNextQuestion}>Next Question</button>
               </div>
             )}
           </div>
