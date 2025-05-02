@@ -15,6 +15,7 @@ export default function Page() {
   const quizData = quizMap[quizId];
 
   const countdown = 10;
+  const coinValue = 10;
 
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -23,6 +24,7 @@ export default function Page() {
   const [isAnswered, setIsAnswered] = useState(false);
   const [totalCoins, setTotalCoins] = useState(0);
   const autoAdvanceTimerRef = useRef(null);
+  const [isCoinAnimate, setIsCoinAnimate] = useState(false);
 
   useEffect(() => {
     setQuestions(quizData.questions);
@@ -31,6 +33,7 @@ export default function Page() {
   useEffect(() => {
     setTimeLeft(countdown);
     setIsAnswered(false);
+    setIsCoinAnimate(false);
     clearTimeout(autoAdvanceTimerRef.current);
   }, [currentQuestionIndex]);
 
@@ -64,7 +67,8 @@ export default function Page() {
     clearTimeout(autoAdvanceTimerRef.current);
 
     if (questions[currentQuestionIndex].correct_answer === option) {
-      setTotalCoins((prev) => prev + 1);
+      setIsCoinAnimate(true);
+      setTotalCoins((prev) => prev + coinValue);
     }
 
     const answer = [...userAnswers];
@@ -76,7 +80,7 @@ export default function Page() {
       if (currentQuestionIndex < questions.length - 1) {
         setCurrentQuestionIndex((prev) => prev + 1);
       } else {
-        onResult();
+        onResult(option);
       }
     }, 5000);
   };
@@ -167,6 +171,7 @@ export default function Page() {
                 if (isAnswered) {
                   if (option.option === correctAnswer) {
                     bgColor = "bg-green-400 text-white";
+                    // setIsCoinAnimate(true);
                   } else if (option.option === selectedOption && option.option !== correctAnswer) {
                     bgColor = "bg-red-400 text-white";
                   }
@@ -194,11 +199,23 @@ export default function Page() {
               })}
             </div>
 
-            <div>
+            <div className='relative'>
+
+              {isCoinAnimate && (
+                <motion.span
+                  className="absolute -top-5 right-0 text-yellow-400 text-xl font-bold"
+                  initial={{ y: 0, opacity: 1 }}
+                  animate={{ y: -30, opacity: 0 }}
+                  transition={{ duration: 1, ease: "easeOut", repeat: 2 }}
+                >
+                  +{coinValue} 💰
+                </motion.span>
+              )}
+
               {currentQuestionIndex < questions.length - 1 && userAnswers[currentQuestionIndex] && isAnswered && (
                 <button
                   onClick={onNextQuestion}
-                  className="relative overflow-hidden w-full bg-[#39FF14] text-black font-bold py-2 rounded-full mt-3 hover:drop-shadow-[0_0_15px_rgba(0,255,255,0.3)] transition duration-300"
+                  className="relative overflow-hidden w-full bg-[#39FF14] text-black font-bold py-2 rounded-full mt-3 hover:drop-shadow-[0_0_15px_rgba(0,255,255,0.3)] transition duration-300 cursor-pointer"
                 >
                   Next Question
                   <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -210,7 +227,7 @@ export default function Page() {
               {currentQuestionIndex >= questions.length - 1 && (
                 <button
                   onClick={onResult}
-                  className="w-full bg-[#39FF14] text-black font-bold py-2 rounded-full mt-3 hover:drop-shadow-[0_0_15px_rgba(0,255,255,0.3)] transition duration-300"
+                  className="w-full bg-[#39FF14] text-black font-bold py-2 rounded-full mt-3 hover:drop-shadow-[0_0_15px_rgba(0,255,255,0.3)] transition duration-300 cursor-pointer"
                 >
                   Result
                 </button>
