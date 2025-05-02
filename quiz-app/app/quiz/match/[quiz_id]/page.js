@@ -34,11 +34,11 @@ function Page() {
             <div>Question 1 of 10</div>
           </div>
           <div className='relative w-[250px] h-[200px] rounded-md overflow-hidden'>
-            <Image src={quizData.questions[0].image} alt="img" layout="fill" objectFit="contain" />
+            {questions[currentQuestionIndex]?.image && <Image src={questions[currentQuestionIndex]?.image} alt="img" layout="fill" objectFit="contain" />}
           </div>
-          <div className='w-full'>Q. {questions[currentQuestionIndex].question}</div>
+          <div className='w-full'>Q. {questions[currentQuestionIndex]?.question}</div>
           <div className='w-full space-y-5'>
-            {questions[currentQuestionIndex].options.map((option, idx)=>(
+            {questions[currentQuestionIndex]?.options.map((option, idx)=>(
               <div key={option.id} className='bg-white text-black p-2 rounded-md space-x-2 cursor-pointer hover:bg-gray-400 duration-300'><span className='py-1 px-2 rounded-full bg-[#1A1A1A] text-white text-xs'>{idx+1}</span><span>{option.option}</span></div>
             ))}
           </div>
