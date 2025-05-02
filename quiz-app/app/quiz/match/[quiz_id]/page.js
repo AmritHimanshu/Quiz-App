@@ -18,9 +18,15 @@ function Page() {
 
   console.log("Questions: ", questions);
 
-  useEffect(()=>{
+  useEffect(() => {
     setQuestions(quizData.questions);
-  },[quizData]);
+  }, [quizData]);
+
+  const handleOptionSelect = (option) => {
+    const answer = [...userAnswers];
+    answer[currentQuestionIndex] = option;
+    setUserAnswers(answer);
+  }
 
   return (
     <div className='p-3 space-y-10'>
@@ -38,8 +44,8 @@ function Page() {
           </div>
           <div className='w-full'>Q. {questions[currentQuestionIndex]?.question}</div>
           <div className='w-full space-y-5'>
-            {questions[currentQuestionIndex]?.options.map((option, idx)=>(
-              <div key={option.id} className='bg-white text-black p-2 rounded-md space-x-2 cursor-pointer hover:bg-gray-400 duration-300'><span className='py-1 px-2 rounded-full bg-[#1A1A1A] text-white text-xs'>{idx+1}</span><span>{option.option}</span></div>
+            {questions[currentQuestionIndex]?.options.map((option, idx) => (
+              <div key={option.id} className='bg-white text-black p-2 rounded-md space-x-2 cursor-pointer hover:bg-gray-400 duration-300' onClick={() => handleOptionSelect(option.option)}><span className='py-1 px-2 rounded-full bg-[#1A1A1A] text-white text-xs'>{idx + 1}</span><span>{option.option}</span></div>
             ))}
           </div>
           <div className='w-full'>
