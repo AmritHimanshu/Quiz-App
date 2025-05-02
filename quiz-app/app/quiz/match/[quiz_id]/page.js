@@ -175,14 +175,21 @@ export default function Page() {
                 }
 
                 return (
-                  <div
-                    key={option.id}
-                    onClick={() => handleOptionSelect(option.option)}
-                    className={`cursor-pointer rounded-md px-4 py-2 font-semibold flex items-center space-x-3 hover:bg-gray-500 transition duration-300 ${bgColor}`}
+                  <motion.div
+                    key={`${idx}-${option.id}`}
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: idx * 0.1, type: "spring", stiffness: 200 }}
                   >
-                    <span className="bg-[#1A1A1A] text-white px-2 py-1 text-xs rounded-full">{idx + 1}</span>
-                    <span>{option.option}</span>
-                  </div>
+                    <div
+                      key={option.id}
+                      onClick={() => handleOptionSelect(option.option)}
+                      className={`cursor-pointer rounded-md px-4 py-2 font-semibold flex items-center space-x-3 hover:bg-gray-500 transition duration-300 ${bgColor}`}
+                    >
+                      <span className="bg-[#1A1A1A] text-white px-2 py-1 text-xs rounded-full">{idx + 1}</span>
+                      <span>{option.option}</span>
+                    </div>
+                  </motion.div>
                 );
               })}
             </div>

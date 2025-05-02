@@ -54,12 +54,20 @@ export default function Page() {
                 {quizData.noOfQuestions} Questions
               </div>
 
-              <button
-                className="w-full py-3 bg-[#39FF14] text-black font-bold rounded-full hover:drop-shadow-[0_0_15px_#00FFFF] transition duration-300 animate-pulse hover:animate-none"
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-full py-3 bg-[#39FF14] text-black font-bold rounded-full hover:drop-shadow-[0_0_15px_#00FFFF] transition duration-300"
                 onClick={() => router.push(`/quiz/match/${quizId}`)}
               >
                 Play
-              </button>
+                {/* <button
+                  className="w-full py-3 bg-[#39FF14] text-black font-bold rounded-full hover:drop-shadow-[0_0_15px_#00FFFF] transition duration-300 animate-pulse hover:animate-none"
+                  onClick={() => router.push(`/quiz/match/${quizId}`)}
+                >
+                  Play
+                </button> */}
+              </motion.button>
             </div>
           </div>
         </div>

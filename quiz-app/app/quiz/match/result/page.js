@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
+
 
 export default function Page() {
     const router = useRouter();
@@ -50,16 +52,23 @@ export default function Page() {
                         { label: "🕒 Time/Ques", value: result.timePerQuestion },
                         { label: "🥉 Live Rank", value: result.liveRank, fullSpan: true },
                     ].map((item, idx) => (
-                        <div
+                        <motion.div
                             key={idx}
-                            className={`bg-[#0c2b35] p-5 rounded-md border border-[#00FFFF] hover:shadow-[0_0_15px_#00FFFF] transition-shadow ${item.fullSpan ? "col-span-full" : ""
-                                }`}
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            transition={{ delay: idx * 0.1, type: "spring", stiffness: 200 }}
                         >
-                            <div className="text-base font-semibold text-gray-300 flex items-center gap-2">
-                                {item.label}
+                            <div
+                                key={idx}
+                                className={`bg-[#0c2b35] p-5 rounded-md border border-[#00FFFF] hover:shadow-[0_0_15px_#00FFFF] transition-shadow ${item.fullSpan ? "col-span-full" : ""
+                                    }`}
+                            >
+                                <div className="text-base font-semibold text-gray-300 flex items-center gap-2">
+                                    {item.label}
+                                </div>
+                                <div className="text-3xl font-bold mt-1 text-[#39FF14]">{item.value}</div>
                             </div>
-                            <div className="text-3xl font-bold mt-1 text-[#39FF14]">{item.value}</div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
 
