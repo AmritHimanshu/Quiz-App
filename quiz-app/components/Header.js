@@ -4,9 +4,10 @@ export default function Header() {
     return (
         <header className="w-full bg-[#9D00FF] shadow-md px-6 py-4">
             <div className="max-w-7xl mx-auto flex items-center justify-between">
-                {/* Logo */}
                 <div className="text-2xl font-bold text-white">
-                    MTS
+                    <Link href="/" className="text-white hover:text-[#00FFFF] font-medium">
+                        MTS
+                    </Link>
                 </div>
 
                 <nav className="space-x-6">
