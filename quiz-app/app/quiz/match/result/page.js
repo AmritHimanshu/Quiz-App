@@ -42,7 +42,7 @@ export default function Page() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 bg-[#2a2a2a] p-6 rounded-xl border border-[#9D00FF] shadow-[0_0_25px_#9D00FF]">
                     {[
-                        { label: "🪙 Coins Earned", value: result.coin },
+                        { label: "🪙 Coin Earned", value: result.coin, animateCoin: true },
                         { label: "🏆 Your Score", value: result.score },
                         { label: "✅ Correct", value: result.correct },
                         { label: "❌ Incorrect", value: result.incorrect },
@@ -54,19 +54,27 @@ export default function Page() {
                     ].map((item, idx) => (
                         <motion.div
                             key={idx}
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            transition={{ delay: idx * 0.1, type: "spring", stiffness: 200 }}
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: idx * 0.1, type: "spring", stiffness: 150 }}
+                            className={`bg-[#0c2b35] p-4 rounded-md border border-[#00FFFF] hover:shadow-[0_0_15px_#00FFFF] transition-shadow ${item.fullSpan ? "col-span-full sm:col-span-2" : ""}`}
                         >
-                            <div
-                                key={idx}
-                                className={`bg-[#0c2b35] p-5 rounded-md border border-[#00FFFF] hover:shadow-[0_0_15px_#00FFFF] transition-shadow ${item.fullSpan ? "col-span-full" : ""
-                                    }`}
-                            >
-                                <div className="text-base font-semibold text-gray-300 flex items-center gap-2">
-                                    {item.label}
-                                </div>
-                                <div className="text-3xl font-bold mt-1 text-[#39FF14]">{item.value}</div>
+                            <div className="text-lg font-semibold flex items-center gap-2 text-gray-300">
+                                {item.label}
+                            </div>
+
+                            <div className="text-2xl font-bold mt-1 text-[#39FF14] relative">
+                                {item.value}
+                                {item.animateCoin && (
+                                    <motion.span
+                                        className="absolute -top-5 right-0 text-yellow-400 text-xl font-bold"
+                                        initial={{ y: 0, opacity: 1 }}
+                                        animate={{ y: -30, opacity: 0 }}
+                                        transition={{ duration: 1, ease: "easeOut", repeat: 2 }}
+                                    >
+                                        +{item.value} 💰
+                                    </motion.span>
+                                )}
                             </div>
                         </motion.div>
                     ))}
