@@ -62,7 +62,7 @@ export default function Page() {
                 />
               </div>
 
-              <h2 className="text-3xl font-extrabold text-[#39FF14] text-center">
+              <h2 className="text-lg lg:text-3xl font-extrabold text-[#39FF14] text-center">
                 {quizData.name}
               </h2>
 

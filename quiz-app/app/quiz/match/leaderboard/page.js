@@ -60,17 +60,24 @@ export default function Page() {
 
                 <div className="flex justify-center items-end gap-6 mb-14">
                     {leaderboard.slice(0, 3).map((player, index) => (
-                        <div
+                        <motion.div
                             key={player.name}
-                            className={`flex flex-col items-center justify-end bg-[#2A2A2A] rounded-xl px-4 py-6 w-36 h-${index === 0 ? "64" : index === 1 ? "56" : "52"}`}
-                            style={{ borderTop: `4px solid ${index === 0 ? "#00FFFF" : index === 1 ? "#9D00FF" : "#39FF14"}` }}
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            transition={{ delay: index * 0.1, type: "spring", stiffness: 200 }}
                         >
-                            <div className="text-3xl mb-2">{crownIcons[index]}</div>
-                            <div className="font-bold text-lg">{player.name}</div>
-                            <div className={`mt-1 text-xl font-semibold text-${index === 0 ? "[#00FFFF]" : index === 1 ? "[#9D00FF]" : "[#39FF14]"}`}>
-                                {player.score}
+                            <div
+                                key={player.name}
+                                className={`flex flex-col items-center justify-end bg-[#2A2A2A] rounded-xl px-4 py-6 w-30 lg:w-36 h-${index === 0 ? "64" : index === 1 ? "56" : "52"}`}
+                                style={{ borderTop: `4px solid ${index === 0 ? "#00FFFF" : index === 1 ? "#9D00FF" : "#39FF14"}` }}
+                            >
+                                <div className="text-3xl mb-2">{crownIcons[index]}</div>
+                                <div className="font-bold text-lg">{player.name}</div>
+                                <div className={`mt-1 text-xl font-semibold text-${index === 0 ? "[#00FFFF]" : index === 1 ? "[#9D00FF]" : "[#39FF14]"}`}>
+                                    {player.score}
+                                </div>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
 
@@ -112,7 +119,7 @@ export default function Page() {
                     className="w-full my-10 py-3 bg-[#39FF14] text-black font-bold rounded-full hover:drop-shadow-[0_0_15px_#00FFFF] transition duration-300 cursor-pointer"
                     onClick={() => router.push("/")}
                 >
-                    Play
+                    Home
                 </motion.button>
             </div>
         </main>

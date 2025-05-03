@@ -8,7 +8,7 @@ export default function Header() {
                     MTS
                 </Link>
 
-                <nav className="flex gap-6 text-lg">
+                <nav className="hidden lg:flex gap-6 text-lg">
                     {["Discover", "AI", "Join", "Live Quiz", "Login", "Register"].map((item) => (
                         <Link
                             key={item}

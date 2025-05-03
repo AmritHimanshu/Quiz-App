@@ -131,7 +131,7 @@ export default function Page() {
         <div className="flex items-center justify-center h-[calc(100vh-90px)]">
           <div className="w-[600px] bg-[#111] text-white rounded-lg p-6 space-y-6 drop-shadow-[0_0_20px_rgba(0,255,255,0.2)]">
             <div className="flex justify-between items-center">
-              <div className="text-2xl font-bold text-[#39FF14]">{quizData.name}</div>
+              <div className="text-sm lg:text-2xl font-bold text-[#39FF14]">{quizData.name}</div>
               <div className="text-yellow-300 font-bold text-lg">💰 {totalCoins} coins</div>
             </div>
 
@@ -189,7 +189,7 @@ export default function Page() {
                     <div
                       key={option.id}
                       onClick={() => handleOptionSelect(option.option)}
-                      className={`cursor-pointer rounded-md px-4 py-2 font-semibold flex items-center space-x-3 hover:bg-gray-500 transition duration-300 ${bgColor}`}
+                      className={`cursor-pointer rounded-md px-4 py-2 font-semibold flex items-center space-x-3 transition duration-300 ${bgColor}`}
                     >
                       <span className="bg-[#1A1A1A] text-white px-2 py-1 text-xs rounded-full">{idx + 1}</span>
                       <span>{option.option}</span>

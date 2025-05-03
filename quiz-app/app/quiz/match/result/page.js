@@ -44,7 +44,7 @@ export default function Page() {
             <Header />
 
             <div className="max-w-4xl mx-auto p-6 space-y-10">
-                <div className="flex items-center gap-3 text-[#39FF14] text-3xl font-bold">
+                <div className="flex items-center gap-3 text-[#39FF14] text-lg lg:text-3xl font-bold">
                     <button
                         onClick={() => router.back()}
                         className="hover:scale-105 transition-transform text-[#00FFFF]"
