@@ -1,10 +1,25 @@
 "use client";
 
 import confetti from 'canvas-confetti';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { motion } from "framer-motion";
+import { useRouter } from 'next/navigation';
 
 export default function Page() {
+    const router = useRouter();
+
+    const [result, setResult] = useState(null);
+
     useEffect(() => {
+        const storedResult = localStorage.getItem("quizResult");
+        if (storedResult) {
+            setResult(JSON.parse(storedResult));
+        }
+    }, []);
+
+    useEffect(() => {
+        if (!result) return;
+
         confetti({
             particleCount: 200,
             spread: 1000,
@@ -13,7 +28,7 @@ export default function Page() {
             scalar: 1.2
         });
 
-    }, []);
+    }, [result]);
 
     const leaderboard = [
         { name: "Sarthaksquiz", score: 36, rank: 1 },
@@ -29,6 +44,14 @@ export default function Page() {
         "🥈",
         "🥉",
     ];
+
+    if (!result) {
+        return (
+            <div className="text-[#E0E0E0] bg-[#1A1A1A] min-h-screen p-5 flex items-center justify-center">
+                Loading...
+            </div>
+        );
+    }
 
     return (
         <main className="min-h-screen bg-[#1A1A1A] text-[#E0E0E0] px-4 py-10">
@@ -52,19 +75,45 @@ export default function Page() {
                 </div>
 
                 <div className="space-y-3">
-                    {leaderboard.slice(3).map((player) => (
-                        <div key={player.name} className={`flex justify-between items-center bg-[#2A2A2A] rounded-lg px-5 py-3 hover:scale-105 duration-300 ${player.rank === 5 ? "bg-[#00FFFF]/20" : ""}`}>
-                            <div className="flex items-center gap-4">
-                                <div className="text-lg font-bold text-[#9D00FF]">#{player.rank}</div>
-                                <div className="text-base">{player.name}</div>
-                            </div>
-                            <div className="flex items-center gap-2">
-                                <span className="text-lg font-semibold text-[#39FF14]">{player.score}</span>
-                                <span className="text-yellow-400">🪙</span>
-                            </div>
+                    <div className={`flex justify-between items-center bg-[#585858] rounded-lg px-5 py-3 hover:scale-105 duration-300}`}>
+                        <div className="flex items-center gap-4">
+                            <div className="text-lg font-bold text-[#9D00FF]">#{result.rank}</div>
+                            <div className="text-base">You</div>
                         </div>
+                        <div className="flex items-center gap-2">
+                            <span className="text-lg font-semibold text-[#39FF14]">{result.score}</span>
+                            <span className="text-yellow-400">🪙</span>
+                        </div>
+                    </div>
+                    {leaderboard.slice(3).map((player, idx) => (
+                        <motion.div
+                            key={player.name}
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            transition={{ delay: idx * 0.1, type: "spring", stiffness: 200 }}
+                        >
+                            <div className={`flex justify-between items-center bg-[#2A2A2A] rounded-lg px-5 py-3 hover:scale-105 duration-300}`}>
+                                <div className="flex items-center gap-4">
+                                    <div className="text-lg font-bold text-[#9D00FF]">#{player.rank}</div>
+                                    <div className="text-base">{player.name}</div>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <span className="text-lg font-semibold text-[#39FF14]">{player.score}</span>
+                                    <span className="text-yellow-400">🪙</span>
+                                </div>
+                            </div>
+                        </motion.div>
                     ))}
                 </div>
+
+                <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-full my-10 py-3 bg-[#39FF14] text-black font-bold rounded-full hover:drop-shadow-[0_0_15px_#00FFFF] transition duration-300 cursor-pointer"
+                    onClick={() => router.push("/")}
+                >
+                    Play
+                </motion.button>
             </div>
         </main>
     );
