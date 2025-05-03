@@ -4,8 +4,8 @@ function Homepage_FIrst_Section() {
   return (
     <div className='h-[60vh] relative'>
       <video
-        autoPlay
-        loop
+        // autoPlay
+        // loop
         muted
         className="absolute inset-0 w-full h-full object-cover"
       >
