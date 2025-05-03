@@ -19,6 +19,7 @@ export default async function Home() {
   );
 }
 
+// Fetching data from the database (json file)
 async function getData() {
   const filePath = path.join(process.cwd(), 'database', 'quizList.json');
   const fileContents = fs.readFileSync(filePath, 'utf8');

@@ -31,13 +31,15 @@ export default function Page() {
     setQuestions(quizData.questions);
   }, [quizData]);
 
+  // Intializing everything with their intial values
   useEffect(() => {
     setTimeLeft(countdown);
     setIsAnswered(false);
     setIsCoinAnimate(false);
     clearTimeout(autoAdvanceTimerRef.current);
   }, [currentQuestionIndex]);
-
+  
+  // Handling timeleft
   useEffect(() => {
     if (timeLeft === 0) {
       if (currentQuestionIndex < questions.length - 1) {
@@ -60,11 +62,13 @@ export default function Page() {
     return () => clearInterval(timer);
   }, [timeLeft, isAnswered, currentQuestionIndex, questions?.length]);
 
+  // Handling on option selection
   const handleOptionSelect = (option) => {
     if (isAnswered) return;
 
     clearTimeout(autoAdvanceTimerRef.current);
 
+    // Adding coins on correct answer
     if (questions[currentQuestionIndex].correct_answer === option) {
       setIsCoinAnimate(true);
       setTotalCoins((prev) => prev + coinValue);
@@ -75,9 +79,10 @@ export default function Page() {
     setUserAnswers(answer);
     setIsAnswered(true);
 
+    // Auto navigating to next question
     autoAdvanceTimerRef.current = setTimeout(() => {
       if (currentQuestionIndex < questions.length - 1) {
-        setTotalTimeSpentOnQuestions((prev) => prev + timeLeft);
+        setTotalTimeSpentOnQuestions((prev) => prev + timeLeft);     // Total time spent on this question
         setCurrentQuestionIndex((prev) => prev + 1);
       } else {
         onResult();
@@ -85,10 +90,11 @@ export default function Page() {
     }, 3000);
   };
 
+  // Handling on clicking next button
   const onNextQuestion = () => {
     clearTimeout(autoAdvanceTimerRef.current);
     if (currentQuestionIndex < questions.length - 1) {
-      setTotalTimeSpentOnQuestions((prev) => prev + timeLeft);
+      setTotalTimeSpentOnQuestions((prev) => prev + timeLeft);    // Total time spent on this question
       setCurrentQuestionIndex((prev) => prev + 1);
     }
   };
@@ -96,8 +102,10 @@ export default function Page() {
   const onResult = () => {
     clearTimeout(autoAdvanceTimerRef.current);
 
+    // Total time spent on this question
     setTotalTimeSpentOnQuestions((prev) => prev + timeLeft);
 
+    // Saving informations of user in localstorage 
     const totalQuestions = questions.length;
     const correct = userAnswers.filter((ans, idx) => ans === questions[idx]?.correct_answer).length;
     const incorrect = totalQuestions - correct;

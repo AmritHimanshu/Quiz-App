@@ -30,6 +30,7 @@ export default function Page() {
 
     }, [result]);
 
+    // Dummy data
     const leaderboard = [
         { name: "Sarthaksquiz", score: 36, rank: 1 },
         { name: "Onni Häninnen", score: 36, rank: 2 },

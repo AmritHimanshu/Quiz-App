@@ -11,6 +11,7 @@ export default function Page() {
     const router = useRouter();
     const [result, setResult] = useState(null);
 
+    // Retrieving data from localstorage
     useEffect(() => {
         const storedResult = localStorage.getItem("quizResult");
         if (storedResult) {

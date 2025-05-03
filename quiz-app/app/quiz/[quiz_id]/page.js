@@ -18,6 +18,7 @@ export default function Page() {
   const [countdown, setCountdown] = useState(null);
   const [showGameStartText, setShowGameStartText] = useState(false);
 
+  // Handle Countdown play
   const handlePlayClick = () => {
     setShowGameStartText(true);
     setTimeout(() => {
