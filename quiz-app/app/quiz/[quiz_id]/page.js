@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import quizMap from "@/database/quizQuestion";
 import Header from '@/components/Header';
@@ -15,12 +15,39 @@ export default function Page() {
   const quizId = params.quiz_id;
   const quizData = quizMap[quizId];
 
+  const [countdown, setCountdown] = useState(null);
+  const [showGameStartText, setShowGameStartText] = useState(false);
+
+  const handlePlayClick = () => {
+    setShowGameStartText(true);
+    setTimeout(() => {
+      setShowGameStartText(false);
+      setCountdown(3);
+    }, 1000);
+  };
+
+  useEffect(() => {
+    if (countdown === null) return;
+
+    if (countdown === 0) {
+      router.push(`/quiz/match/${quizId}`);
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      setCountdown((prev) => (prev !== null ? prev - 1 : null));
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [countdown, quizId, router]);
+
   return (
     <>
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
+        className='relative'
       >
         <div className="bg-[#0c0c0c] min-h-screen text-white">
           <Header />
@@ -58,13 +85,35 @@ export default function Page() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="w-full py-3 bg-[#39FF14] text-black font-bold rounded-full hover:drop-shadow-[0_0_15px_#00FFFF] transition duration-300 cursor-pointer"
-                onClick={() => router.push(`/quiz/match/${quizId}`)}
+                onClick={handlePlayClick}
               >
                 Play
               </motion.button>
             </div>
           </div>
         </div>
+
+        {(showGameStartText || countdown !== null) && (
+          <div className="absolute top-0 w-full h-full flex items-center justify-center bg-[#111] bg-opacity-90 z-50">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.3 }}
+              className="text-center"
+            >
+              {showGameStartText ? (
+                <div className="text-4xl sm:text-5xl font-extrabold text-[#00FFFF] tracking-wide animate-pulse">
+                  Game Starts In...
+                </div>
+              ) : (
+                <div className="text-6xl font-bold text-[#00FFFF] animate-ping">
+                  {countdown}
+                </div>
+              )}
+            </motion.div>
+          </div>
+        )}
+
       </motion.div>
     </>
   );
