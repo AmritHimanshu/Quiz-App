@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import '../styles/QuizListHomePage.css';
 import { motion } from "framer-motion";
@@ -9,12 +9,21 @@ import { motion } from "framer-motion";
 function QuizListHomePage({ data }) {
     const router = useRouter();
 
+    const [isLoading, setIsLoading] = useState(false);
+
+    const handleSelect = (id) => {
+        setIsLoading(true);
+        router.push(`/quiz/${id}`)
+        setIsLoading(false);
+    }
+
     return (
         <>
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
+                className='relative'
             >
                 <div className="space-y-10 w-[90%] max-w-7xl m-auto py-10">
                     <div className='space-y-4'>
@@ -26,7 +35,7 @@ function QuizListHomePage({ data }) {
                                 transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
                             >
                                 <div
-                                    onClick={() => router.push(`/quiz/trending_01`)}
+                                    onClick={() => handleSelect('trending_01')}
                                     className="bg-[#0c2b35] rounded-lg overflow-hidden cursor-pointer border border-[#00FFFF] hover:shadow-[0_0_15px_#00FFFF] transition-shadow group"
                                 >
                                     <div className="relative w-72 h-48 overflow-hidden">
@@ -60,7 +69,7 @@ function QuizListHomePage({ data }) {
                                         >
                                             <div
                                                 key={quiz.id}
-                                                onClick={() => router.push(`/quiz/${quiz.id}`)}
+                                                onClick={() => handleSelect(quiz.id)}
                                                 className="bg-[#0c2b35] rounded-lg overflow-hidden cursor-pointer border border-[#00FFFF] hover:shadow-[0_0_15px_#00FFFF] transition-shadow group"
                                             >
                                                 <div className="relative w-72 h-48 overflow-hidden">
@@ -83,6 +92,21 @@ function QuizListHomePage({ data }) {
                         </div>
                     ))}
                 </div>
+
+                {isLoading && (
+                    <div className="absolute top-0 w-full h-full flex items-center justify-center bg-[#111] bg-opacity-90 z-50">
+                        <motion.div
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ duration: 0.3 }}
+                            className="text-center"
+                        >
+                            <div className="text-4xl sm:text-5xl font-extrabold text-[#00FFFF] tracking-wide animate-pulse">
+                                Loading...
+                            </div>
+                        </motion.div>
+                    </div>
+                )}
             </motion.div>
         </>
     );
