@@ -2,33 +2,22 @@ import Link from 'next/link';
 
 export default function Header() {
     return (
-        <header className="w-full bg-[#9D00FF] shadow-md px-6 py-4">
+        <header className="w-full bg-[#0c0c0c] border-b border-[#9D00FF] shadow-[0_0_15px_#9D00FF] px-6 py-4">
             <div className="max-w-7xl mx-auto flex items-center justify-between">
-                <div className="text-2xl font-bold text-white">
-                    <Link href="/" className="text-white hover:text-[#00FFFF] font-medium">
-                        MTS
-                    </Link>
-                </div>
+                <Link href="/" className="text-3xl font-extrabold text-[#39FF14] hover:text-[#00FFFF] tracking-wide transition duration-300 drop-shadow-[0_0_5px_#39FF14]">
+                    MTS
+                </Link>
 
-                <nav className="space-x-6">
-                    <Link href="/" className="text-white hover:text-[#00FFFF] font-medium">
-                        Discover
-                    </Link>
-                    <Link href="/" className="text-white hover:text-[#00FFFF] font-medium">
-                        AI
-                    </Link>
-                    <Link href="/" className="text-white hover:text-[#00FFFF] font-medium">
-                        Join
-                    </Link>
-                    <Link href="/" className="text-white hover:text-[#00FFFF] font-medium">
-                        Live Quiz
-                    </Link>
-                    <Link href="/" className="text-white hover:text-[#00FFFF] font-medium">
-                        Login
-                    </Link>
-                    <Link href="/" className="text-white hover:text-[#00FFFF] font-medium">
-                        Register
-                    </Link>
+                <nav className="flex gap-6 text-lg">
+                    {["Discover", "AI", "Join", "Live Quiz", "Login", "Register"].map((item) => (
+                        <Link
+                            key={item}
+                            href="/"
+                            className="relative text-[#E0E0E0] hover:text-[#00FFFF] font-medium transition duration-200"
+                        >
+                            <span className="hover:drop-shadow-[0_0_8px_#00FFFF]">{item}</span>
+                        </Link>
+                    ))}
                 </nav>
             </div>
         </header>
