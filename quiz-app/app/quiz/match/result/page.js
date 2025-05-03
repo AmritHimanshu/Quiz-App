@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Header from "@/components/Header";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import confetti from 'canvas-confetti';
 
 
 export default function Page() {
@@ -16,6 +17,19 @@ export default function Page() {
             setResult(JSON.parse(storedResult));
         }
     }, []);
+
+    useEffect(() => {
+        if (!result) return;
+      
+        confetti({
+          particleCount: 200,
+          spread: 1000,
+          origin: { y: 0.5 },
+          colors: ['#00FFFF', '#39FF14', '#FFD700', '#9D00FF'],
+          scalar: 1.2
+        });
+      
+      }, [result]);      
 
     if (!result) {
         return (

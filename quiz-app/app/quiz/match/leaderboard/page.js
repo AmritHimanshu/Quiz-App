@@ -1,4 +1,20 @@
+"use client";
+
+import confetti from 'canvas-confetti';
+import { useEffect } from 'react';
+
 export default function Page() {
+    useEffect(() => {
+        confetti({
+            particleCount: 200,
+            spread: 1000,
+            origin: { y: 0.5 },
+            colors: ['#00FFFF', '#39FF14', '#FFD700', '#9D00FF'],
+            scalar: 1.2
+        });
+
+    }, []);
+
     const leaderboard = [
         { name: "Sarthaksquiz", score: 36, rank: 1 },
         { name: "Onni Häninnen", score: 36, rank: 2 },
