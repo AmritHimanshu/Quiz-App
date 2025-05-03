@@ -25,6 +25,7 @@ export default function Page() {
   const [totalCoins, setTotalCoins] = useState(0);
   const autoAdvanceTimerRef = useRef(null);
   const [isCoinAnimate, setIsCoinAnimate] = useState(false);
+  const [totalTimeSpentOnQuestions, setTotalTimeSpentOnQuestions] = useState(0);
 
   useEffect(() => {
     setQuestions(quizData.questions);
@@ -38,8 +39,6 @@ export default function Page() {
   }, [currentQuestionIndex]);
 
   useEffect(() => {
-    if (isAnswered) return;
-
     if (timeLeft === 0) {
       if (currentQuestionIndex < questions.length - 1) {
         setCurrentQuestionIndex(currentQuestionIndex + 1);
@@ -78,16 +77,18 @@ export default function Page() {
 
     autoAdvanceTimerRef.current = setTimeout(() => {
       if (currentQuestionIndex < questions.length - 1) {
+        setTotalTimeSpentOnQuestions((prev) => prev + timeLeft);
         setCurrentQuestionIndex((prev) => prev + 1);
       } else {
-        onResult(option);
+        onResult();
       }
-    }, 5000);
+    }, 3000);
   };
 
   const onNextQuestion = () => {
     clearTimeout(autoAdvanceTimerRef.current);
     if (currentQuestionIndex < questions.length - 1) {
+      setTotalTimeSpentOnQuestions((prev) => prev + timeLeft);
       setCurrentQuestionIndex((prev) => prev + 1);
     }
   };
@@ -95,12 +96,14 @@ export default function Page() {
   const onResult = () => {
     clearTimeout(autoAdvanceTimerRef.current);
 
+    setTotalTimeSpentOnQuestions((prev) => prev + timeLeft);
+
     const totalQuestions = questions.length;
     const correct = userAnswers.filter((ans, idx) => ans === questions[idx]?.correct_answer).length;
     const incorrect = totalQuestions - correct;
     const unattempted = userAnswers.filter((ans) => !ans).length;
     const accuracy = ((correct / totalQuestions) * 100).toFixed(0);
-    const totalTimeSpent = totalQuestions * countdown;
+    const totalTimeSpent = totalTimeSpentOnQuestions;
     const avgTimePerQues = (totalTimeSpent / totalQuestions).toFixed(0);
 
     const resultData = {
